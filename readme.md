@@ -16,3 +16,10 @@ Example: https://openapi.programming-hero.com/api/news/0282e0e58a5c404fbd15261f1
 
 Missing Data:
 Here total view and author name is null https://openapi.programming-hero.com/api/news/2e78e5e0310c2e9adbb6efb1a263e745
+
+style="max-width: 540px"
+
+ <div class="bg-image " 
+                    style="background-image: url('${post.thumbnail_url}'); height: 100%; background-repeat: no-repeat !important;
+                    background-size: cover; background-position: center center;}">
+                </div>

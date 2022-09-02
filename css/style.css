@@ -17,3 +17,24 @@
   /* border: 1px solid; */
   border-bottom: 0px;
 }
+
+.short {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.title-short {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-details-text {
+  font-size: 0.9rem;
+}
+
+.body {
+  background-color: #f6f6f7;
+}
