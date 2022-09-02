@@ -8,3 +8,12 @@
 .name {
   margin-bottom: 0.3rem;
 }
+
+/* <li class="nav-item">
+<a class="nav-link active" aria-current="page" href="#">Active</a>
+</li> */
+.catNav {
+  border-color: var(--bs-nav-tabs-link-active-border-color) !important;
+  /* border: 1px solid; */
+  border-bottom: 0px;
+}
