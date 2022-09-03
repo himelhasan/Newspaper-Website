@@ -34,3 +34,9 @@ bonsu marks
 - responsive must
 - on blog answer - 3 questions
 - git hub commit
+
+// for (const category of categories) {
+// const li = document.createElement("li");
+// li.innerHTML = ` // <li class="nav-item catNav" onclick="loadCategoryPost('${category.category_id}')"> // <a class="nav-link text-black " aria-current="page" href="#">${category.category_name}</a> // </li> // `;
+// catNav.append(li);
+// }

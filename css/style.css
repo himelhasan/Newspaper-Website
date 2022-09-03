@@ -38,3 +38,14 @@
 .body {
   background-color: #f6f6f7;
 }
+
+.read-more {
+  border: 0px !important;
+  background-color: #fff !important;
+  color: #dc3545;
+  font-weight: bold !important;
+}
+
+.fa-solid {
+  color: #dc3545;
+}

@@ -11,15 +11,16 @@ const loadCategory = () => {
 // display categories from api
 const displayCategory = (categories) => {
   const catNav = document.getElementById("cat-nav");
-  for (const category of categories) {
+
+  categories.forEach((category) => {
     const li = document.createElement("li");
     li.innerHTML = `
       <li class="nav-item catNav" onclick="loadCategoryPost('${category.category_id}')">
-      <a class="nav-link text-black " aria-current="page" href="#">${category.category_name}</a>
-    </li>
+        <a class="nav-link text-black " aria-current="page" href="#">${category.category_name}</a>
+      </li>
       `;
     catNav.append(li);
-  }
+  });
 };
 
 const loadCategoryPost = (id) => {
@@ -36,10 +37,6 @@ const loadPostDataFromCategory = (posts) => {
   // showing number of posts in top header
   const numberOfPosts = document.getElementById("number-of-posts");
   numberOfPosts.innerText = posts.length;
-
-  // sort by views
-  // posts.sort((a, b) => b.total_view - a.total_view);
-  console.log(posts);
   sortByViews(posts);
 
   // loading posts from api in blog post container
@@ -50,7 +47,11 @@ const loadPostDataFromCategory = (posts) => {
     const div = document.createElement("div");
     div.classList.add("col-md-6");
     div.innerHTML = `
-    <div class="card mb-3" onclick="generatePostId('${post._id}')">
+   
+    
+    <div class="card mb-3" onclick="generatePostId('${post._id}')"
+     >
+
       <div class="row g-0" >
           <!-- blog card start -->
           <div class="col-md-4">
@@ -67,9 +68,14 @@ const loadPostDataFromCategory = (posts) => {
             <div class="col-md-8" >
               <div class="card-body">
                 <h5 class="card-title title-short">${post.title}</h5>
-                <p class="card-text short">${post.details}</p>
+                <p class="card-text short">${post.details} </p>
                 <p class="card-text">
-                  <small class="text-muted">Last updated 3 mins ago</small>
+                  <small class="text-muted">
+                  
+                  <button type="button" class="read-more" data-bs-toggle="modal" data-bs-target='#exampleModal' >
+                  Read More
+                  </button>
+                  </small>
                 </p>
               </div>
               <!-- post details -->
@@ -95,12 +101,12 @@ const loadPostDataFromCategory = (posts) => {
                       post.total_view ? post.total_view : "No data"
                     }</p>
                   </div>
-                  <div class="col-3"><p class="star">   
-                      <i class="fa-regular fa-star-half p-0 m-0 "></i>
-                      <i class="fa-regular fa-star p-0 m-0 "></i>
-                      <i class="fa-regular fa-star p-0 m-0 "></i>
-                      <i class="fa-regular fa-star p-0 m-0 "></i>
-                      <i class="fa-regular fa-star p-0 m-0 "></i>
+                  <div class="col-3"><p class="star">  
+                  <i class="fa-solid fa-star-half-stroke"></i> 
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
                   
                   </p></div>
                 </div>
@@ -111,7 +117,6 @@ const loadPostDataFromCategory = (posts) => {
           <!-- blog card start -->
       </div>
     </div>
-  
       
       `;
     blogContainer.append(div);
@@ -124,10 +129,24 @@ const loadPostDataFromCategory = (posts) => {
 
 const generatePostId = (postId) => {
   console.log(postId);
+  url = `https://openapi.programming-hero.com/api/news/${postId}`;
+  console.log(url);
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => showBlogPostDetails(data.data, postId))
+    .catch((err) => console.log(err));
 };
 
-const showBlogPostDetails = (url) => {
-  console.log(url);
+const showBlogPostDetails = (url, postId) => {
+  const exampleModalLabel = document.getElementById("exampleModalLabel");
+  exampleModalLabel.innerText = `${url[0].title}`;
+  const blogImage = (document.getElementById("blog-image").src = `${url[0].image_url}`);
+
+  const blogDescription = document.getElementById("blog-description");
+  blogDescription.innerText = `${url[0].details}`;
+
+  // ${url[0].image_url}
+  // ${url[0].details}
 };
 
 loadCategory();
