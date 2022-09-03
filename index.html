@@ -54,7 +54,9 @@
               placeholder="Search"
               aria-label="Search"
             />
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-danger" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
           </form>
         </div>
       </div>
@@ -65,6 +67,22 @@
       <ul class="nav nav-tabs" id="cat-nav"></ul>
     </div>
     <!-- category navbar ends -->
+
+    <!-- no posts found starts -->
+    <div class="container bg-white rounded py-1 my-2 shadow-sm">
+      <h1 class="h4 px-2 py-1"><span id="number-of-posts">No </span> Posts Found</h1>
+    </div>
+
+    <!--   no posts found ends -->
+
+    <!-- Spinner starts -->
+
+    <div class="container min-vw-100 text-center p-5 my-5 d-none" id="spinner">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <!-- Spinner ends -->
 
     <div class="container py-3">
       <div class="row" id="blog-container"></div>

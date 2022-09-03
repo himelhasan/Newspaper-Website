@@ -1,4 +1,4 @@
-console.log("https://openapi.programming-hero.com/api/news/categories");
+// load categories from api
 
 const loadCategory = () => {
   const url = "https://openapi.programming-hero.com/api/news/categories";
@@ -8,6 +8,7 @@ const loadCategory = () => {
     .catch((err) => console.log(err));
 };
 
+// display categories from api
 const displayCategory = (categories) => {
   console.log(categories);
   const catNav = document.getElementById("cat-nav");
@@ -31,10 +32,15 @@ const loadCategoryPost = (id) => {
     .then((res) => res.json())
     .then((data) => loadPostDataFromCategory(data.data))
     .catch((err) => console.log(err));
+
+  //spinner starts
+  toggleSpinner(true);
 };
 
 const loadPostDataFromCategory = (posts) => {
-  //   console.log(posts);
+  // showing number of posts in top header
+  const numberOfPosts = document.getElementById("number-of-posts");
+  numberOfPosts.innerText = posts.length;
 
   const blogContainer = document.getElementById("blog-container");
   blogContainer.innerHTML = "";
@@ -99,8 +105,19 @@ const loadPostDataFromCategory = (posts) => {
       `;
     blogContainer.append(div);
   }
+  //spinner ends
+  toggleSpinner(false);
 };
 
 loadCategory();
 
-//  onclick="loadCategoryPost("${category.category_name}")"
+// loader function for loading
+
+const toggleSpinner = (isLoading) => {
+  const spinner = document.getElementById("spinner");
+  if (isLoading) {
+    spinner.classList.remove("d-none");
+  } else {
+    spinner.classList.add("d-none");
+  }
+};
