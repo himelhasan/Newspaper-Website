@@ -10,10 +10,8 @@ const loadCategory = () => {
 
 // display categories from api
 const displayCategory = (categories) => {
-  console.log(categories);
   const catNav = document.getElementById("cat-nav");
   for (const category of categories) {
-    console.log(category.category_name);
     const li = document.createElement("li");
     li.innerHTML = `
       <li class="nav-item catNav" onclick="loadCategoryPost('${category.category_id}')">
@@ -25,14 +23,11 @@ const displayCategory = (categories) => {
 };
 
 const loadCategoryPost = (id) => {
-  console.log(id);
   const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
-  console.log(url);
   fetch(url)
     .then((res) => res.json())
     .then((data) => loadPostDataFromCategory(data.data))
     .catch((err) => console.log(err));
-
   //spinner starts
   toggleSpinner(true);
 };
@@ -42,10 +37,16 @@ const loadPostDataFromCategory = (posts) => {
   const numberOfPosts = document.getElementById("number-of-posts");
   numberOfPosts.innerText = posts.length;
 
+  // sort by views
+  // posts.sort((a, b) => b.total_view - a.total_view);
+  console.log(posts);
+  sortByViews(posts);
+
+  // loading posts from api in blog post container
   const blogContainer = document.getElementById("blog-container");
   blogContainer.innerHTML = "";
   for (const post of posts) {
-    console.log(post.title);
+    // console.log(post.title);
     const div = document.createElement("div");
     div.classList.add("col-md-6");
     div.innerHTML = `
@@ -72,10 +73,10 @@ const loadPostDataFromCategory = (posts) => {
                 <div class="row post-details-text">
                   <div class="col-6">
                     <div class="d-flex flex-row gap-2">
-                      <div class="w-50">
-                        <img class="image-fluid w-75 rounded-circle" src="${post.author.img}" alt="" />
+                      <div class="w-25">
+                        <img class="image-fluid w-100 rounded-circle" src="${post.author.img}" alt="" />
                       </div>
-                      <div class="w-50 text-start">
+                      <div class="w-75 text-start">
                        <small> <p class="text-start name"><b>${post.author.name}</b></p></small>
                        <small> <p class="">${post.author.published_date}</p></small>
                       </div>
@@ -120,4 +121,12 @@ const toggleSpinner = (isLoading) => {
   } else {
     spinner.classList.add("d-none");
   }
+};
+
+const sortByTitle = (post) => {
+  post.sort((a, b) => a - b);
+};
+
+const sortByViews = (post) => {
+  post.sort((a, b) => b.total_view - a.total_view);
 };

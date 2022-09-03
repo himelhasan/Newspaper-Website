@@ -17,9 +17,19 @@ Example: https://openapi.programming-hero.com/api/news/0282e0e58a5c404fbd15261f1
 Missing Data:
 Here total view and author name is null https://openapi.programming-hero.com/api/news/2e78e5e0310c2e9adbb6efb1a263e745
 
-style="max-width: 540px"
+normal
 
- <div class="bg-image " 
-                    style="background-image: url('${post.thumbnail_url}'); height: 100%; background-repeat: no-repeat !important;
-                    background-size: cover; background-position: center center;}">
-                </div>
+- site name
+- site navbar with 2 items
+- by defualt show category
+- show news on category name click
+- No data avialble show when ther is no data
+
+bonsu marks
+
+- spinner
+- number of posts
+- es6 - let, const, arrow,for each,fetch - error handeler .catch.
+- responsive must
+- on blog answer - 3 questions
+- git hub commit
