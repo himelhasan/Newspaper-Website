@@ -21,9 +21,10 @@ normal
 
 - site name
 - site navbar with 2 items
-- by defualt show category
-- show news on category name click
+- by defualt show category name dynamically
+- show news on category dynamically
 - No data avialble show when ther is no data
+- show no data avialbe on author name and view number when its empty
 
 bonsu marks
 

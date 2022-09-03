@@ -46,20 +46,24 @@ const loadPostDataFromCategory = (posts) => {
   const blogContainer = document.getElementById("blog-container");
   blogContainer.innerHTML = "";
   for (const post of posts) {
-    // console.log(post.title);
+    console.log(post._id);
     const div = document.createElement("div");
     div.classList.add("col-md-6");
     div.innerHTML = `
-    <div class="card mb-3" >
+    <div class="card mb-3" onclick="generatePostId('${post._id}')">
       <div class="row g-0" >
           <!-- blog card start -->
           <div class="col-md-4">
 
             <div class="bg-image " 
-                style="background-image: url('${post.thumbnail_url}'); height: 100%; background-repeat: no-repeat !important;
+                style="background-image: url('${
+                  post.thumbnail_url
+                }'); height: 100%; background-repeat: no-repeat !important;
                 background-size: cover; background-position: center center;}"></div>
             </div>
-            <img src="${post.thumbnail_url}" class="img-fluid d-block d-sm-block d-md-none" alt="">
+            <img src="${
+              post.thumbnail_url
+            }" class="img-fluid d-block d-sm-block d-md-none" alt="">
             <div class="col-md-8" >
               <div class="card-body">
                 <h5 class="card-title title-short">${post.title}</h5>
@@ -74,16 +78,22 @@ const loadPostDataFromCategory = (posts) => {
                   <div class="col-6">
                     <div class="d-flex flex-row gap-2">
                       <div class="w-25">
-                        <img class="image-fluid w-100 rounded-circle" src="${post.author.img}" alt="" />
+                        <img class="image-fluid w-100 rounded-circle" src="${
+                          post.author.img
+                        }" alt="" />
                       </div>
                       <div class="w-75 text-start">
-                       <small> <p class="text-start name"><b>${post.author.name}</b></p></small>
+                       <small> <p class="text-start name"><b>${
+                         post.author.name ? post.author.name : "No Data"
+                       }</b></p></small>
                        <small> <p class="">${post.author.published_date}</p></small>
                       </div>
                     </div>
                   </div>
                   <div class="col-3">
-                    <p><i class="fa-regular fa-eye pe-2"></i></i>${post.total_view}</p>
+                    <p><i class="fa-regular fa-eye pe-2"></i></i>${
+                      post.total_view ? post.total_view : "No data"
+                    }</p>
                   </div>
                   <div class="col-3"><p class="star">   
                       <i class="fa-regular fa-star-half p-0 m-0 "></i>
@@ -108,6 +118,16 @@ const loadPostDataFromCategory = (posts) => {
   }
   //spinner ends
   toggleSpinner(false);
+};
+
+// show Blog Post details
+
+const generatePostId = (postId) => {
+  console.log(postId);
+};
+
+const showBlogPostDetails = (url) => {
+  console.log(url);
 };
 
 loadCategory();
