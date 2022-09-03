@@ -30,6 +30,8 @@ const loadCategoryPost = (id) => {
     .then((data) => loadPostDataFromCategory(data.data))
     .catch((err) => console.log(err));
   //spinner starts
+  const blogContainer = document.getElementById("blog-container");
+  blogContainer.innerHTML = "";
   toggleSpinner(true);
 };
 
